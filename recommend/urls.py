@@ -35,12 +35,12 @@ urlpatterns = [
 sched = Scheduler()
 
 
-@sched.interval_schedule(seconds=60 * 60)
+@sched.interval_schedule(seconds=60 * 60 * 24)
 def craw_news():
     craw_news_task.craw()
 
 
-@sched.interval_schedule(seconds=60 * 60)
+@sched.interval_schedule(seconds=60 * 30)
 def offline_cal_recommend_list_task():
     iron_log.info('start to offline_cal_recommend_list_task')
     engine.offline_cal_recommend_list()
@@ -57,3 +57,5 @@ def init_partner_id_list():
 
 
 init_partner_id_list()
+craw_news()
+offline_cal_recommend_list_task()

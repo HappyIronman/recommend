@@ -138,7 +138,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'E:/django/recommend/info.log',
+            'filename': './log/info.log',
             'formatter': 'verbose'
         },
         'console': {
