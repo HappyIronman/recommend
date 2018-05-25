@@ -57,5 +57,5 @@ def init_partner_id_list():
 
 
 init_partner_id_list()
-craw_news()
-offline_cal_recommend_list_task()
+# craw_news()
+# offline_cal_recommend_list_task()
