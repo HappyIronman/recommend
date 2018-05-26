@@ -37,7 +37,7 @@ sched = Scheduler()
 
 @sched.interval_schedule(seconds=60 * 5)
 def craw_news():
-    craw_news_task.craw()
+    craw_news_task.offline_craw()
 
 
 @sched.interval_schedule(seconds=60 * 30)
