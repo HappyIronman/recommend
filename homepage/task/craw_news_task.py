@@ -13,6 +13,8 @@ cookie = cookielib.CookieJar()
 
 
 def offline_craw():
+    # 删除原有数据
+    CrawNews.objects.all().delete()
     iron_log.info('start to craw...')
     for i in range(3):
         iron_log.info('start to craw... ' + str(i))

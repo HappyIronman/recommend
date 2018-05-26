@@ -19,7 +19,7 @@ class CrawNews(models.Model):
     url = models.CharField(max_length=300)
     author = models.CharField(max_length=50, null=True)
     origin_site = models.CharField(max_length=10, choices=ORIGIN_SITE_CHOICES)
-    create_time = models.DateField(auto_now_add=True)
+    create_time = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.title

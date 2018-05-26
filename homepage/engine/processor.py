@@ -2,8 +2,6 @@
 import logging
 import re
 
-from django.utils.timezone import now
-
 from homepage.filter import result_filter
 from homepage.models import Recommend_Result, CrawNews, Blog, User
 
@@ -20,7 +18,7 @@ def process(user_id, page, size):
     external_num = size - local_num
     external_recommend_set = set()
     if external_num > 0:
-        external_recommend_set = CrawNews.objects.filter(create_time__gte=now().date())[
+        external_recommend_set = CrawNews.objects.order_by('-create_time')[
                                  page * external_num:(page + 1) * external_num]
 
     recommend_list = []

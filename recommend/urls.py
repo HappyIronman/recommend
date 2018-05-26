@@ -35,7 +35,7 @@ urlpatterns = [
 sched = Scheduler()
 
 
-@sched.interval_schedule(seconds=60 * 60 * 24)
+@sched.interval_schedule(seconds=60 * 5)
 def craw_news():
     craw_news_task.craw()
 
