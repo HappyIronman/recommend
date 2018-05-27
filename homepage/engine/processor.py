@@ -45,7 +45,7 @@ def process(user_id, page, size):
         except Blog.DoesNotExist, ex:
             iron_log.exception(ex)
             iron_log.error('Exception, processor will continue.')
-    iron_log.info(recommend_list)
+    iron_log.info(str(len(recommend_list)) + ' results returned.')
     return recommend_list
 
 
