@@ -2,7 +2,6 @@
 from homepage.engine.weight_func import default_cal_weight_func, like_log_cal_weight_func
 from homepage.models import *
 
-IS_READY = False
 # 系统常量，不可任意更改
 VIEW_LOG = 'view_log'
 LIKE_LOG = 'like_log'
