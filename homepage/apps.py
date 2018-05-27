@@ -16,6 +16,9 @@ class HomepageConfig(AppConfig):
         from apscheduler.scheduler import Scheduler
         from homepage.task import craw_news_task
         from homepage.engine import engine
+        if constants.IS_READY:
+            return
+        constants.IS_READY = True
         iron_log.info('init PARTNER_ID_SET...')
         constants.PARTNER_ID_SET = set(constants.PARTNER_IDS.split(';'))
         iron_log.info(constants.PARTNER_ID_SET)

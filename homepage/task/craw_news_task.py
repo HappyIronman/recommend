@@ -42,7 +42,7 @@ def craw():
         url = article.get('url')
         author = article.get('nickname')
         iron_log.info('title:' + title)
-        iron_log.info('content:' + content)
+        # iron_log.info('content:' + content)
         iron_log.info('pub_date:' + pub_date)
         iron_log.info('url:' + url)
         iron_log.info('author:' + author)
