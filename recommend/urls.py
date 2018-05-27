@@ -32,30 +32,31 @@ urlpatterns = [
     url(r'^recommend/homepage/', views.get_recommend_homepage),
 ]
 
-sched = Scheduler()
+# sched = Scheduler()
+#
+#
+# @sched.interval_schedule(seconds=60 * 5)
+# def craw_news():
+#     craw_news_task.offline_craw()
+#
+#
+# @sched.interval_schedule(seconds=60 * 30)
+# def offline_cal_recommend_list_task():
+#     iron_log.info('start to offline_cal_recommend_list_task')
+#     engine.offline_cal_recommend_list()
+#     iron_log.info('end offline_cal_recommend_list_task\n')
+#
+#
+# sched.start()
+#
+#
+# def init_partner_id_list():
+#     iron_log.info('init PARTNER_ID_SET...')
+#     constants.PARTNER_ID_SET = set(constants.PARTNER_IDS.split(';'))
+#     iron_log.info(constants.PARTNER_ID_SET)
 
 
-@sched.interval_schedule(seconds=60 * 5)
-def craw_news():
-    craw_news_task.offline_craw()
+# init_partner_id_list()
 
-
-@sched.interval_schedule(seconds=60 * 30)
-def offline_cal_recommend_list_task():
-    iron_log.info('start to offline_cal_recommend_list_task')
-    engine.offline_cal_recommend_list()
-    iron_log.info('end offline_cal_recommend_list_task\n')
-
-
-sched.start()
-
-
-def init_partner_id_list():
-    iron_log.info('init PARTNER_ID_SET...')
-    constants.PARTNER_ID_SET = set(constants.PARTNER_IDS.split(';'))
-    iron_log.info(constants.PARTNER_ID_SET)
-
-
-init_partner_id_list()
 # craw_news()
 # offline_cal_recommend_list_task()

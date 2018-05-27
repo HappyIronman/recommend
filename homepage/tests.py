@@ -18,7 +18,6 @@ from homepage.task import craw_news_task
 # Create your tests here.
 import logging
 
-
 # Get an instance of a logger
 root = logging.getLogger('ironman')
 # logger = logging.getLogger(__name__)
