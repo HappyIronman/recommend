@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+
 from django.apps import AppConfig
 
 iron_log = logging.getLogger('ironman')
@@ -16,6 +17,8 @@ class HomepageConfig(AppConfig):
         from apscheduler.scheduler import Scheduler
         from homepage.task import craw_news_task
         from homepage.engine import engine
+        from homepage.models import CrawNews
+        import datetime
         iron_log.info('init PARTNER_ID_SET...')
         constants.PARTNER_ID_SET = set(constants.PARTNER_IDS.split(';'))
         iron_log.info(constants.PARTNER_ID_SET)
@@ -31,8 +34,16 @@ class HomepageConfig(AppConfig):
             engine.offline_cal_recommend_list()
             iron_log.info('end offline_cal_recommend_list_task\n')
 
+        @sched.interval_schedule(seconds=60 * 60 * 24)
+        def delete_news():
+            iron_log.info('start to delete_news')
+            result = CrawNews.objects.filter(create_time__lt=datetime.date.today()).delete()
+            print result
+            iron_log.info(str(result[0]) + ' objects deleted.')
+
         sched.start()
 
+        delete_news()
         craw_news()
         offline_cal_recommend_list_task()
 

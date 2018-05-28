@@ -14,7 +14,7 @@ cookie = cookielib.CookieJar()
 
 def offline_craw():
     # 删除原有数据
-    CrawNews.objects.all().delete()
+    # CrawNews.objects.all().delete()
     iron_log.info('start to craw...')
     for i in range(3):
         iron_log.info('start to craw... ' + str(i))
@@ -24,7 +24,6 @@ def offline_craw():
 
 
 def craw():
-    iron_log.info('start to craw 1...')
     # 利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
     handler = urllib2.HTTPCookieProcessor(cookie)
     # 通过handler来构建opener

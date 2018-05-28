@@ -9,6 +9,7 @@ import time
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "recommend.settings")  # project_name 项目名称
 django.setup()
+from homepage.models import CrawNews
 
 from django.conf import settings
 
@@ -23,5 +24,8 @@ root = logging.getLogger('ironman')
 # logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
-    craw_news_task.offline_craw()
-    engine.offline_cal_recommend_list()
+    # craw_news_task.offline_craw()
+    # engine.offline_cal_recommend_list()
+    today = datetime.date.today()
+    print today
+    result = CrawNews.objects.filter(create_time__lt=today).delete()
