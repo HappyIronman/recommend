@@ -26,6 +26,6 @@ root = logging.getLogger('ironman')
 if __name__ == '__main__':
     # craw_news_task.offline_craw()
     # engine.offline_cal_recommend_list()
-    today = datetime.date.today()
-    print today
-    result = CrawNews.objects.filter(create_time__lt=today).delete()
+    ago = datetime.datetime.now() + datetime.timedelta(hours=-21)
+    result = CrawNews.objects.filter(create_time__lt=ago).delete()
+    print ago, result

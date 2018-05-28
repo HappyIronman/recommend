@@ -37,8 +37,8 @@ class HomepageConfig(AppConfig):
         @sched.interval_schedule(seconds=60 * 60 * 24)
         def delete_news():
             iron_log.info('start to delete_news')
-            result = CrawNews.objects.filter(create_time__lt=datetime.date.today()).delete()
-            print result
+            start_time = datetime.datetime.now() + datetime.timedelta(hours=-3)
+            result = CrawNews.objects.filter(create_time__lt=start_time).delete()
             iron_log.info(str(result[0]) + ' objects deleted.')
 
         sched.start()
