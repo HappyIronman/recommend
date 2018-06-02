@@ -24,17 +24,17 @@ class HomepageConfig(AppConfig):
         iron_log.info(constants.PARTNER_ID_SET)
         sched = Scheduler()
 
-        @sched.interval_schedule(seconds=60 * 20)
+        @sched.interval_schedule(seconds=60 * 30)
         def craw_news():
             craw_news_task.offline_craw()
 
-        @sched.interval_schedule(seconds=60 * 30)
+        @sched.interval_schedule(seconds=60 * 60 * 8)
         def offline_cal_recommend_list_task():
             iron_log.info('start to offline_cal_recommend_list_task')
             engine.offline_cal_recommend_list()
             iron_log.info('end offline_cal_recommend_list_task\n')
 
-        @sched.interval_schedule(seconds=60 * 60 * 24)
+        @sched.interval_schedule(seconds=60 * 60 * 3)
         def delete_news():
             iron_log.info('start to delete_news')
             start_time = datetime.datetime.now() + datetime.timedelta(hours=-3)
