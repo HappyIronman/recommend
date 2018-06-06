@@ -154,7 +154,7 @@ LOGGING = {
         },
     },
 }
-CRONJOBS = [('0 0 1 * *', 'homepage.task.craw_news_task.offline_craw')],
+CRONJOBS = [('*/5 * * * *', 'homepage.task.craw_news_task.offline_craw'),],
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
