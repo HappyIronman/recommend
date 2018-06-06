@@ -2,6 +2,7 @@
 import cookielib
 import json
 import logging
+import traceback
 import urllib2
 
 # 声明一个CookieJar对象实例来保存cookie
@@ -46,17 +47,20 @@ def craw():
     print len(articles), ' results got.'
     print articles
     for article in articles:
-        title = article.get('title')
-        content = article.get('summary')
-        pub_date = article.get('created_at')
-        url = article.get('url')
-        author = article.get('nickname')
-        print 'title:', title
-        # print ('content:' + content)
-        print 'pub_date:', pub_date
-        print 'url:', url
-        print 'author:', author
-        craw_new = CrawNews(title=title, content=content, pub_date=pub_date,
-                            url=url, author=author, origin_site=CrawNews.CSDN)
-        craw_new.save()
-        print 'saved'
+        try:
+            title = article.get('title')
+            content = article.get('summary')
+            pub_date = article.get('created_at')
+            url = article.get('url')
+            author = article.get('nickname')
+            print 'title:', title
+            # print ('content:' + content)
+            print 'pub_date:', pub_date
+            print 'url:', url
+            print 'author:', author
+            craw_new = CrawNews(title=title, content=content, pub_date=pub_date,
+                                url=url, author=author, origin_site=CrawNews.CSDN)
+            craw_new.save()
+            print 'saved'
+        except Exception:
+            traceback.print_exc()
