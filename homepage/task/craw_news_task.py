@@ -35,7 +35,6 @@ def delete_news():
 def craw():
     # 利用urllib2库的HTTPCookieProcessor对象来创建cookie处理器
     handler = urllib2.HTTPCookieProcessor(cookie)
-    print "cookie:", cookie
     # 通过handler来构建opener
     opener = urllib2.build_opener(handler)
     # 此处的open方法同urllib2的urlopen方法，也可以传入request
@@ -45,6 +44,7 @@ def craw():
     res_obj = json.loads(res_str, encoding='utf-8')
     articles = res_obj.get('articles')
     print (str(len(articles)) + ' results got.')
+    print articles
     for article in articles:
         title = article.get('title')
         content = article.get('summary')
