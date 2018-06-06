@@ -156,8 +156,8 @@ LOGGING = {
 }
 
 CRONJOBS = [('*/30 * * * *', 'homepage.task.craw_news_task.offline_craw'),
-            ('* */8 * * *', 'homepage.engine.engine.offline_cal_recommend_list'),
-            ('* */3 * * *', 'homepage.task.craw_news_task.delete_news')]
+            ('27 */8 * * *', 'homepage.engine.engine.offline_cal_recommend_list'),
+            ('27 */3 * * *', 'homepage.task.craw_news_task.delete_news')]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
