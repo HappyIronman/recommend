@@ -61,5 +61,7 @@ def craw():
                                 url=url, author=author, origin_site=CrawNews.CSDN)
             craw_new.save()
             print 'saved'
-        except Exception:
+        except Exception,e:
+            print e
+            repr(e)
             traceback.print_exc()
