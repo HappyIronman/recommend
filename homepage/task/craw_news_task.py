@@ -2,12 +2,9 @@
 import cookielib
 import json
 import logging
-import traceback
 import urllib2
 
 # 声明一个CookieJar对象实例来保存cookie
-import datetime
-
 from homepage.models import CrawNews
 
 iron_log = logging.getLogger('ironman')
@@ -18,19 +15,12 @@ cookie = cookielib.CookieJar()
 def offline_craw():
     # 删除原有数据
     # CrawNews.objects.all().delete()
-    print ('start to craw...')
+    iron_log.info('start to craw...')
     for i in range(3):
-        print ('start to craw... ' + str(i))
+        iron_log.info('start to craw... ' + str(i))
         craw()
-        print ('end crawing. ' + str(i))
-    print ('end crawing.')
-
-
-def delete_news():
-    print ('start to delete_news')
-    start_time = datetime.datetime.now() + datetime.timedelta(hours=-3)
-    result = CrawNews.objects.filter(create_time__lt=start_time).delete()
-    print (str(result[0]) + ' objects deleted.')
+        iron_log.info('end crawing. ' + str(i))
+    iron_log.info('end crawing.')
 
 
 def craw():
@@ -44,7 +34,6 @@ def craw():
     res_str = response.read()
     res_obj = json.loads(res_str, encoding='utf-8')
     articles = res_obj.get('articles')
-    print len(articles), ' results got.'
     for article in articles:
         try:
             title = article.get('title')
@@ -52,16 +41,14 @@ def craw():
             pub_date = article.get('created_at')
             url = article.get('url')
             author = article.get('nickname')
-            print 'title:', title
-            # print ('content:' + content)
-            print 'pub_date:', pub_date
-            print 'url:', url
-            print 'author:', author
+            iron_log.info('title:' + title)
+            # iron_log.info('content:' + content)
+            iron_log.info('pub_date:' + pub_date)
+            iron_log.info('url:' + url)
+            iron_log.info('author:' + author)
             craw_new = CrawNews(title=title, content=content, pub_date=pub_date,
                                 url=url, author=author, origin_site=CrawNews.CSDN)
             craw_new.save()
-            print 'saved'
-        except Exception,e:
-            print e
-            repr(e)
-            traceback.print_exc()
+            iron_log.info('saved')
+        except Exception, ex:
+            iron_log.exception(ex)
