@@ -45,7 +45,6 @@ def craw():
     res_obj = json.loads(res_str, encoding='utf-8')
     articles = res_obj.get('articles')
     print len(articles), ' results got.'
-    print articles
     for article in articles:
         try:
             title = article.get('title')
