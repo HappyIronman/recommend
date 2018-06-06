@@ -43,7 +43,7 @@ def craw():
     res_str = response.read()
     res_obj = json.loads(res_str, encoding='utf-8')
     articles = res_obj.get('articles')
-    print (str(len(articles)) + ' results got.')
+    print len(articles), ' results got.'
     print articles
     for article in articles:
         title = article.get('title')
@@ -51,12 +51,12 @@ def craw():
         pub_date = article.get('created_at')
         url = article.get('url')
         author = article.get('nickname')
-        print ('title:' + title)
+        print 'title:', title
         # print ('content:' + content)
-        print ('pub_date:' + pub_date)
-        print ('url:' + url)
-        print ('author:' + author)
+        print 'pub_date:', pub_date
+        print 'url:', url
+        print 'author:', author
         craw_new = CrawNews(title=title, content=content, pub_date=pub_date,
                             url=url, author=author, origin_site=CrawNews.CSDN)
         craw_new.save()
-        print ('saved')
+        print 'saved'
