@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'homepage',
 ]
 
@@ -153,6 +154,12 @@ LOGGING = {
         },
     },
 }
+
+CRONJOBS = [
+               ('*/30 * * * *', 'homepage.task.craw_news_task.offline_craw', '>>./log/cron.log'),
+               ('0 * * * *', 'homepage.engine.engine.offline_cal_recommend_list', '>>./log/cron.log'),
+               ('0 */2 * * *', 'homepage.task.craw_news_task.delete_news', '>>./log/cron.log'),
+           ],
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
