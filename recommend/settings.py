@@ -156,9 +156,9 @@ LOGGING = {
 }
 
 CRONJOBS = [
-               ('* * * * *', 'homepage.task.craw_news_task.offline_craw', '>>./log/cron.log'),
-               ('* * * * *', 'homepage.engine.engine.offline_cal_recommend_list', '>>./log/cron.log'),
-               ('* * * * *', 'homepage.task.craw_news_task.delete_news', '>>./log/cron.log'),
+               ('*/1 * * * *', 'homepage.task.craw_news_task.offline_craw', '>>./log/cron.log'),
+               ('*/2 * * * *', 'homepage.engine.engine.offline_cal_recommend_list', '>>./log/cron.log'),
+               ('*/3 * * * *', 'homepage.task.craw_news_task.delete_news', '>>./log/cron.log'),
            ],
 
 # Static files (CSS, JavaScript, Images)
