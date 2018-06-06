@@ -46,4 +46,3 @@ class HomepageConfig(AppConfig):
         # delete_news()
         # craw_news()
         # offline_cal_recommend_list_task()
-

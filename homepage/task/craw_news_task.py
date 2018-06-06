@@ -5,6 +5,8 @@ import logging
 import urllib2
 
 # 声明一个CookieJar对象实例来保存cookie
+import datetime
+
 from homepage.models import CrawNews
 
 iron_log = logging.getLogger('ironman')
@@ -21,6 +23,13 @@ def offline_craw():
         craw()
         iron_log.info('end crawing. ' + str(i))
     iron_log.info('end crawing.')
+
+
+def delete_news():
+    iron_log.info('start to delete_news')
+    start_time = datetime.datetime.now() + datetime.timedelta(hours=-3)
+    result = CrawNews.objects.filter(create_time__lt=start_time).delete()
+    iron_log.info(str(result[0]) + ' objects deleted.')
 
 
 def craw():
